@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/styles.css">
+    <title>weather app</title>
+    <style>
+        body{
+    background-image: url('static/sky.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+</style>
+</head>
+<body>
+    <div id="first";>
+        <b>{{ city }}</b>
+    </div>
+    <div id="common">
+        <br>
+        {% if data%}
+        <table class="center">
+        <tr>
+            <td>Temperature:</td>
+            <td>{{data['main']['temp']}}</td>
+        </tr>
+        <tr>
+            <td>Temperature feels like:</td>
+            <td>{{data['main']['feels_like']}}</td>
+        </tr>
+        <tr>
+            <td>Minimum Temperature:</td>
+            <td>{{data['main']['temp_min']}}</td>
+        </tr>
+        <tr>
+            <td>Maximum Temperature:</td>
+            <td>{{data['main']['temp_max']}}</td>
+        </tr>
+        <tr>
+            <td>Pressure:</td>
+            <td>{{data['main']['pressure']}}</td>
+        </tr>
+        <tr>
+            <td>Humidity:</td>
+            <td>{{data['main']['humidity']}}</td>
+        </tr>
+    </table>
+        {% endif %}
+    </div>
+    <div>
+        <hr>
+        <h4>
+            <div class="p-3 mb-2 bg-dark text-white">Check for another City:</div>
+        </h4>
+            <form class="form-inline" method="post" action="{{ url_for('get_weather') }}" style="justify-content:center; display: flex; padding-top: 2%;" >
+                <div>
+                    <input name="city" type="text" value="{{ request.form['city'] }}">
+                </div>
+                    <input button class="btn btn-info btn-lg" type="submit" value="Submit" style="margin-left: 0.7%;"></button>
+                    <a class="btn btn-secondary btn-lg" href="/" role="button" style="margin-left: 0.7%;">Home Page</a>
+            </form>
+    </div>
+      
+</body>
+</html>
